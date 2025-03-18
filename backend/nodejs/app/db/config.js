@@ -1,5 +1,5 @@
 const connectToMongoDb = require("./mongodb")
-const {DB_PROVIDER} = require("../constants/env.const")
+const {DB_PROVIDER} = require("../config")
 let connect;
 
 switch (DB_PROVIDER) {

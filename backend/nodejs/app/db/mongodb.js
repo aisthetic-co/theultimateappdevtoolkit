@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const logger = require("../helpers/logger/index")
-const {DB_URL} = require("../constants/env.const")
-
-
+const {ENVIRONMENT} = require("../config")
+const DB_URL = ENVIRONMENT === "development" ? 
+"mongodb+srv://unsaid:test123@cluster0.duhrl.mongodb.net/unsaid_prod?retryWrites=true&w=majority" 
+: 
+"mongodb+srv://unsaid:test123@cluster0.duhrl.mongodb.net/unsaid_prod?retryWrites=true&w=majority"
 const connectToMongoDb = async () => {
     try {
       await mongoose.connect(DB_URL, {

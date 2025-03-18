@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 
-const {WHITELIST_URLS} = require("./app/config")
-const {PORT}  = require("./app/constants/env.const")
+const {WHITELIST_URLS,PORT} = require("./app/config")
 const logger = require("./app/helpers/logger/index")
 const requestInfo = require("./app/middlewares/requestInfo");
 const connect = require("./app/db/config")
