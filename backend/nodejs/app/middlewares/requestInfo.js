@@ -12,7 +12,6 @@ const requestInfo = async(req,res,next)=>{
 
 
         const infoObject = {
-            user,
             ip,
             path,
             body,
@@ -30,7 +29,7 @@ const requestInfo = async(req,res,next)=>{
           message: err.message,
           stack: err.stack
         })}`
-        logger.error(msg);
+        logger.error(message);
         res.status(400).json({message})
     }
     
