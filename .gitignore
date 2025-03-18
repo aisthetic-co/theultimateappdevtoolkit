@@ -48,3 +48,5 @@
 
 /backend/nodejs/node_modules
 /backend/nodejs/.env
+
+#nodejs start
