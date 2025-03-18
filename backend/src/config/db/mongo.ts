@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
-import logger from "../logger";
-
-import config from ".";
+import config from "..";
+import logger from "../../logger";
 
 mongoose.set("strictQuery", true);
 

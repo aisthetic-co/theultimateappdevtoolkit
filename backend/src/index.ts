@@ -3,7 +3,7 @@ import os from "os";
 
 import app from "./app";
 import config from "./config";
-import "./config/db";
+import "./config/db/mongo";
 import logger from "./logger";
 
 const numCPUs = config.env === "production" ? os.cpus().length : 1;
