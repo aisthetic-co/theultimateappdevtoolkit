@@ -9,8 +9,7 @@ const {WHITELIST_URLS} = require("./app/config")
 const {PORT}  = require("./app/constants/env.const")
 const logger = require("./app/helpers/logger/index")
 const requestInfo = require("./app/middlewares/requestInfo");
-const connectToDB = require("./app/config/mongodb")
-
+const connect = require("./app/db/config")
 const router = require("./app/routes/index")
 const app = express();
 
@@ -29,8 +28,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(requestInfo);
 
 //connect to mongoDb
-connectToDB()
-
+connect()
 const errorHandler = (error, request, response) => {
     // Error handling middleware functionality
     logger.error(`error in global middleware - ${JSON.stringify(error.message)}`);

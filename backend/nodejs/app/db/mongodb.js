@@ -3,7 +3,7 @@ const logger = require("../helpers/logger/index")
 const {DB_URL} = require("../constants/env.const")
 
 
-const connectDB = async () => {
+const connectToMongoDb = async () => {
     try {
       await mongoose.connect(DB_URL, {
         useNewUrlParser: true,
@@ -18,4 +18,4 @@ const connectDB = async () => {
   };
 
 
-module.exports = connectDB
+module.exports = connectToMongoDb
