@@ -43,3 +43,8 @@
 /frontend/nextjs/next-env.d.ts
 
 #nextjs end
+
+#nodejs start
+
+/backend/nodejs/node_modules
+/backend/nodejs/.env
