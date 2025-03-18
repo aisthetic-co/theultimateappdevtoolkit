@@ -31,7 +31,7 @@ app.use(requestInfo);
 //connect to mongoDb
 connectToDB()
 
-const errorHandler = (error, request, response, next) => {
+const errorHandler = (error, request, response) => {
     // Error handling middleware functionality
     logger.error(`error in global middleware - ${JSON.stringify(error.message)}`);
     const status = error.status || 500;
@@ -65,7 +65,7 @@ console.log = (...args) => {
   
     const formattedLog = args.map(formatArg).join(' '); // Join for readability
     logger.info(formattedLog);
-  };
+};
 
 
 

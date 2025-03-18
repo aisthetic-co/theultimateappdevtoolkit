@@ -10,7 +10,6 @@ const requestInfo = async(req,res,next)=>{
         const body = { ...req.body };
         const origin = req.headers?.origin;
 
-
         const infoObject = {
             ip,
             path,
