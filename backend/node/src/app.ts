@@ -5,7 +5,6 @@ import helmet from "helmet";
 
 import config from "./config";
 import { errorHandler, notFound } from "./middlewares/error";
-import { handleResponse } from "./middlewares/handleResponse";
 import pinoLogger from "./middlewares/logger";
 import router from "./routes";
 
@@ -21,7 +20,6 @@ app.use(pinoLogger());
 app.use(`${config.PREFIX}`, router);
 
 app.use(notFound);
-app.use(handleResponse);
 app.use(errorHandler);
 
 export default app;
