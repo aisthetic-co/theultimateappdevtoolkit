@@ -1,7 +1,6 @@
 import express from "express";
 
 import asyncHandler from "../../utils/asyncHandler";
-
 import healthcheckController from "./healthcheck.controller";
 
 const router = express.Router();

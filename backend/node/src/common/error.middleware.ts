@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Response, Request, NextFunction, ErrorRequestHandler } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 
 import APP_ENVS from "../config/envs";
 import APP_CONSTS from "../const";
@@ -22,12 +22,12 @@ const errorMiddleware: ErrorRequestHandler = (
   const { message, statusCode } = err;
 
   res.status(statusCode || httpStatus.forbidden).json({
-    success: "false",
     message: message,
     stack:
       APP_ENVS.ENV !== APP_CONSTS.ENVIRONMENTS.DEVELOPMENT
         ? err.stack
         : undefined,
+    success: "false",
   });
 };
 

@@ -24,22 +24,22 @@ const redactPaths = [
 const getDevLogger = () => {
   const logger = pino({
     level: APP_CONSTS.LOG_LEVELS.DEBUG,
+    redact: {
+      paths: redactPaths,
+      remove: true,
+    },
     transport: {
       targets: [
         {
-          target: "pino-pretty",
           level: APP_CONSTS.LOG_LEVELS.DEBUG,
           options: {
             colorize: true,
             levelFirst: true,
             translateTime: "SYS:standard",
           },
+          target: "pino-pretty",
         },
       ],
-    },
-    redact: {
-      paths: redactPaths,
-      remove: true,
     },
   });
 

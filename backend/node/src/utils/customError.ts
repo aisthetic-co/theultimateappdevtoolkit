@@ -1,9 +1,9 @@
 import { IError } from "../types/error";
 
 class CustomError {
-  statusCode: number;
   errors;
   message: string;
+  statusCode: number;
 
   constructor(message: string, statusCode: number, errors?: IError[]) {
     this.statusCode = statusCode;

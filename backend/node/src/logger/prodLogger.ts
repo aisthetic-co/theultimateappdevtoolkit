@@ -1,6 +1,5 @@
 // logger.js
 import path from "path";
-
 import pino from "pino";
 
 import APP_CONFIG from "../config";
@@ -26,17 +25,20 @@ const redactPaths = [
 
 const getProdLogger = () => {
   const logger = pino({
-    level: APP_CONSTS.LOG_LEVELS.INFO,
-    timestamp: () => `,"timestamp":"${new Date().toISOString()}"`,
-    messageKey: "message",
     base: {
       env: process.env.NODE_ENV,
       version: process.env.npm_package_version,
     },
+    level: APP_CONSTS.LOG_LEVELS.INFO,
+    messageKey: "message",
+    redact: {
+      paths: redactPaths,
+      remove: true,
+    },
+    timestamp: () => `,"timestamp":"${new Date().toISOString()}"`,
     transport: {
       targets: [
         {
-          target: "pino/file",
           level: "info",
           options: {
             destination: path.join(
@@ -46,12 +48,9 @@ const getProdLogger = () => {
             mkdir: true,
             sync: false,
           },
+          target: "pino/file",
         },
       ],
-    },
-    redact: {
-      paths: redactPaths,
-      remove: true,
     },
   });
   return logger;

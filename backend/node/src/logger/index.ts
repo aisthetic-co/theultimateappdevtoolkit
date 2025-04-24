@@ -3,7 +3,6 @@ import pino from "pino";
 
 import APP_ENVS from "../config/envs";
 import APP_CONSTS from "../const";
-
 import getDevLogger from "./devLogger";
 import getProdLogger from "./prodLogger";
 
@@ -27,7 +26,7 @@ const getLogger = () => {
     );
     return logger;
   } catch (error) {
-    // eslint-disable-next-line no-console
+
     console.error("Error initializing logger:", error);
     const logger = pino({
       level: APP_CONSTS.LOG_LEVELS.INFO,

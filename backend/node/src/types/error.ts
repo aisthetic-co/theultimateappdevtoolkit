@@ -1,7 +1,7 @@
 interface IError extends Partial<Error> {
-  path?: string;
   code: string;
   message: string;
+  path?: string;
 }
 
 export type { IError };
