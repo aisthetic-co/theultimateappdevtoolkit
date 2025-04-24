@@ -3,6 +3,7 @@ import path from "path";
 
 import pino from "pino";
 
+import APP_CONFIG from "../config";
 import APP_CONSTS from "../const";
 
 const redactPaths = [
@@ -23,8 +24,6 @@ const redactPaths = [
   "token",
 ];
 
-const LOG_PATH = "../../logs";
-
 const getProdLogger = () => {
   const logger = pino({
     level: APP_CONSTS.LOG_LEVELS.INFO,
@@ -40,7 +39,10 @@ const getProdLogger = () => {
           target: "pino/file",
           level: "info",
           options: {
-            destination: path.join(__dirname, `${LOG_PATH}/app.logs`),
+            destination: path.join(
+              __dirname,
+              `${APP_CONFIG.LOG_PATH}/app.logs`
+            ),
             mkdir: true,
             sync: false,
           },
