@@ -1,14 +1,38 @@
-import winston from "winston";
+// logger.js
+import pino from "pino";
 
-import devLogger from "./devLogger";
-import prodLogger from "./prodLogger";
+import config from "../config";
 
-let logger: winston.Logger;
+import getDevLogger from "./devLogger";
+import getProdLogger from "./prodLogger";
 
-if (process.env.NODE_ENV !== "production") {
-  logger = devLogger();
-} else {
-  logger = prodLogger();
-}
+const getLogger = () => {
+  try {
+    const devLogger = getDevLogger();
+    const prodLooger = getProdLogger();
 
-export default logger;
+    const logger =
+      config.env === config.ENVIRONMENTS.DEVELOPMENT ? devLogger : prodLooger;
+
+    logger.info(
+      {
+        env: config.env,
+        nodeVersion: process.version,
+        pid: process.pid,
+      },
+      "Logger initialized successfully"
+    );
+    return logger;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Error initializing logger:", error);
+    const logger = pino({
+      level: config.LOG_LEVELS.INFO,
+      timestamp: true,
+    });
+
+    return logger;
+  }
+};
+
+export default getLogger();

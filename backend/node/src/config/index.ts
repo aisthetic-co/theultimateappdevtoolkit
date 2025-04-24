@@ -3,9 +3,6 @@ import env from "env-var";
 
 dotenv.config();
 
-const isProduction =
-  env.get("NODE_ENV").default("development").asString() === "production";
-
 const config = {
   PORT: env.get("PORT").default("4000").asString(),
   env: env.get("NODE_ENV").default("development").asString(),
@@ -23,17 +20,19 @@ const config = {
 
   SERVER_NAME: env.get("SERVER_NAME").default("localServer").asString(),
 
-  CLOUDWATCH: isProduction
-    ? {
-        accessKeyId: env.get("CLOUDWATCH_ACCESS_ID").required().asString(),
-        secretAccessKey: env
-          .get("CLOUDWATCH_SECRET_ACCESS_KEY")
-          .required()
-          .asString(),
-        region: env.get("CLOUDWATCH_REGION").required().asString(),
-        logName: env.get("CLOUDWATCH_LOG_NAME").required().asString(),
-      }
-    : undefined,
+  LOG_LEVELS: {
+    TRACE: "trace",
+    DEBUG: "debug",
+    INFO: "info",
+    WARN: "warn",
+    ERROR: "error",
+    FATAL: "fatal",
+  },
+  ENVIRONMENTS: {
+    DEVELOPMENT: "development",
+    STAGING: "staging",
+    PRODUCTION: "production",
+  },
 };
 
 export default config;

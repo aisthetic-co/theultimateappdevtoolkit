@@ -1,59 +1,58 @@
-import moment from "moment";
-import { createLogger, format, transports } from "winston";
-import WinstonCloudWatch from "winston-cloudwatch";
+// logger.js
+import path from "path";
+
+import pino from "pino";
 
 import config from "../config";
 
-const { combine, timestamp, printf } = format;
+const redactPaths = [
+  "name",
+  "address",
+  "passport",
+  "phone",
+  "user.name",
+  "user.address",
+  "user.passport",
+  "user.phone",
+  "*.user.name", // * is a wildcard covering a depth of 1
+  "*.user.address",
+  "*.user.passport",
+  "*.user.phone",
+  "password",
+  "confirmPassword",
+  "token",
+];
 
-const myFormat = printf(({ level, message, timestamp }) => {
-  return `[${level}] ${timestamp}: ${message}`;
-});
+const LOG_PATH = "../../logs";
 
-const prodLogger = () => {
-  // Initialize transports array with common transports
-  const loggerTransports: any[] = [
-    new transports.Console({ level: "debug" }),
-    new transports.File({ filename: "error.log", level: "error" }),
-    new transports.File({ filename: "combine.log" }),
-  ];
-
-  // Add CloudWatch transports only if configured
-  if (config.CLOUDWATCH) {
-    loggerTransports.push(
-      new WinstonCloudWatch({
-        level: "info",
-        logGroupName: config.CLOUDWATCH.logName,
-        logStreamName: moment().format("DD-MM-YYYY"),
-        awsRegion: config.CLOUDWATCH.region,
-        awsOptions: {
-          credentials: {
-            accessKeyId: config.CLOUDWATCH.accessKeyId,
-            secretAccessKey: config.CLOUDWATCH.secretAccessKey,
+const getProdLogger = () => {
+  const logger = pino({
+    level: config.LOG_LEVELS.INFO,
+    timestamp: () => `,"timestamp":"${new Date().toISOString()}"`,
+    messageKey: "message",
+    base: {
+      env: process.env.NODE_ENV,
+      version: process.env.npm_package_version,
+    },
+    transport: {
+      targets: [
+        {
+          target: "pino/file",
+          level: "info",
+          options: {
+            destination: path.join(__dirname, `${LOG_PATH}/app.logs`),
+            mkdir: true,
+            sync: false,
           },
         },
-      }),
-      new WinstonCloudWatch({
-        level: "error",
-        logGroupName: `${config.CLOUDWATCH.logName}-error`,
-        logStreamName: moment().format("DD-MM-YYYY"),
-        awsRegion: config.CLOUDWATCH.region,
-        awsOptions: {
-          credentials: {
-            accessKeyId: config.CLOUDWATCH.accessKeyId,
-            secretAccessKey: config.CLOUDWATCH.secretAccessKey,
-          },
-        },
-      })
-    );
-  }
-
-  return createLogger({
-    level: "info",
-    format: combine(timestamp(), myFormat),
-    transports: loggerTransports,
-    exceptionHandlers: [new transports.File({ filename: "exceptions.log" })],
+      ],
+    },
+    redact: {
+      paths: redactPaths,
+      remove: true,
+    },
   });
+  return logger;
 };
 
-export default prodLogger;
+export default getProdLogger;
