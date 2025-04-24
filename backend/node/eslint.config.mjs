@@ -5,11 +5,18 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-    {
-        ignores: ["src/const/httpStatus.ts", "src/const/index.ts"]
-    },
-    { extends: ["js/recommended"], files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js } },
-    { files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: { globals: globals.browser } },
-    tseslint.configs.recommended,
-    perfectionist.configs["recommended-natural"],
+  {
+    ignores: ["src/const/httpStatus.ts", "src/const/index.ts", "dist/**"],
+  },
+  {
+    extends: ["js/recommended"],
+    files: ["**/*.{js,mjs,cjs,ts}"],
+    plugins: { js },
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,ts}"],
+    languageOptions: { globals: globals.browser },
+  },
+  tseslint.configs.recommended,
+  perfectionist.configs["recommended-natural"],
 ]);

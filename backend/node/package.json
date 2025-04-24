@@ -12,9 +12,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "copy-views": "copyfiles -u 1 \"./src/**/*.ejs\" \"dist\"",
-    "format": "prettier -c .",
-    "format:fix": "prettier -w .",
-    "all": "npm run lint:fix && npm run lint && npm run format:fix && npm run format"
+    "format": "prettier -c ./src",
+    "format:fix": "prettier -w ./src",
+    "all": "npm run lint:fix && npm run lint && npm run format:fix && npm run format",
+    "prepare": "husky && husky install"
   },
   "author": "Harshad Birajdar <hbirajdar1@gmail.com>",
   "license": "ISC",
@@ -28,9 +29,7 @@
     "copyfiles": "^2.4.1",
     "eslint": "^9.25.1",
     "eslint-plugin-perfectionist": "^4.12.2",
-    "git-cz": "^4.9.0",
     "globals": "^16.0.0",
-    "husky": "^8.0.3",
     "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "5.8",
@@ -49,7 +48,10 @@
     "rotating-file-stream": "^3.2.6",
     "zod": "^3.24.3"
   },
-  "imports": {
-    "#*": "./src/*"
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run format",
+      "npm run lint"
+    ]
   }
 }

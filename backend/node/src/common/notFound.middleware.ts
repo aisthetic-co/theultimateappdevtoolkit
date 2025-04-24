@@ -6,7 +6,7 @@ import CustomError from "../utils/customError";
 export const notFound = (req: Request, res: Response, next: NextFunction) => {
   const error = new CustomError(
     `Not Found - ${req.originalUrl}`,
-    httpStatus.notFound
+    httpStatus.notFound,
   );
 
   next(error);

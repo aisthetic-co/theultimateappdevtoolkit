@@ -43,7 +43,7 @@ const getProdLogger = () => {
           options: {
             destination: path.join(
               __dirname,
-              `${APP_CONFIG.LOG_PATH}/app.logs`
+              `${APP_CONFIG.LOG_PATH}/app.logs`,
             ),
             mkdir: true,
             sync: false,

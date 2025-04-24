@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
@@ -12,12 +11,12 @@ const errorMiddleware: ErrorRequestHandler = (
   err: any,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   logger.error(
     `Error occurred for request ID: ${req.id}. Message: ${JSON.stringify(
-      err.message
-    )}`
+      err.message,
+    )}`,
   );
   const { message, statusCode } = err;
 

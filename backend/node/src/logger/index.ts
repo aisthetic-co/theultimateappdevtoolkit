@@ -22,11 +22,10 @@ const getLogger = () => {
         nodeVersion: process.version,
         pid: process.pid,
       },
-      "Logger initialized successfully"
+      "Logger initialized successfully",
     );
     return logger;
   } catch (error) {
-
     console.error("Error initializing logger:", error);
     const logger = pino({
       level: APP_CONSTS.LOG_LEVELS.INFO,
