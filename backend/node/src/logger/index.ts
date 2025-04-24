@@ -1,7 +1,8 @@
 // logger.js
 import pino from "pino";
 
-import config from "../config";
+import APP_ENVS from "../config/envs";
+import APP_CONSTS from "../const";
 
 import getDevLogger from "./devLogger";
 import getProdLogger from "./prodLogger";
@@ -12,11 +13,13 @@ const getLogger = () => {
     const prodLooger = getProdLogger();
 
     const logger =
-      config.env === config.ENVIRONMENTS.DEVELOPMENT ? devLogger : prodLooger;
+      APP_ENVS.ENV === APP_CONSTS.ENVIRONMENTS.DEVELOPMENT
+        ? devLogger
+        : prodLooger;
 
     logger.info(
       {
-        env: config.env,
+        env: APP_ENVS.ENV,
         nodeVersion: process.version,
         pid: process.pid,
       },
@@ -27,7 +30,7 @@ const getLogger = () => {
     // eslint-disable-next-line no-console
     console.error("Error initializing logger:", error);
     const logger = pino({
-      level: config.LOG_LEVELS.INFO,
+      level: APP_CONSTS.LOG_LEVELS.INFO,
       timestamp: true,
     });
 

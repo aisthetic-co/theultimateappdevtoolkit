@@ -3,7 +3,7 @@ import path from "path";
 
 import pino from "pino";
 
-import config from "../config";
+import APP_CONSTS from "../const";
 
 const redactPaths = [
   "name",
@@ -27,7 +27,7 @@ const LOG_PATH = "../../logs";
 
 const getProdLogger = () => {
   const logger = pino({
-    level: config.LOG_LEVELS.INFO,
+    level: APP_CONSTS.LOG_LEVELS.INFO,
     timestamp: () => `,"timestamp":"${new Date().toISOString()}"`,
     messageKey: "message",
     base: {

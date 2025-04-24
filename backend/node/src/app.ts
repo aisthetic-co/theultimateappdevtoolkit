@@ -1,14 +1,15 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import express, { Application } from "express";
+import express from "express";
 import helmet from "helmet";
 
-import config from "./config";
-import { errorHandler, notFound } from "./middlewares/error";
-import pinoLogger from "./middlewares/logger";
+import errorMiddleware from "./common/error.middleware";
+import pinoLogger from "./common/logger.middleware";
+import notFound from "./common/notFound.middleware";
+import APP_ENVS from "./config/envs";
 import router from "./routes";
 
-const app: Application = express();
+const app = express();
 
 app.use(cors());
 app.use(express.urlencoded());
@@ -17,9 +18,9 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(pinoLogger());
-app.use(`${config.PREFIX}`, router);
+app.use(`${APP_ENVS.PREFIX}`, router);
 
 app.use(notFound);
-app.use(errorHandler);
+app.use(errorMiddleware);
 
 export default app;

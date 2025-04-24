@@ -1,7 +1,7 @@
 // logger.js
 import pino from "pino";
 
-import config from "../config";
+import APP_CONSTS from "../const";
 
 const redactPaths = [
   "name",
@@ -23,12 +23,12 @@ const redactPaths = [
 
 const getDevLogger = () => {
   const logger = pino({
-    level: config.LOG_LEVELS.DEBUG,
+    level: APP_CONSTS.LOG_LEVELS.DEBUG,
     transport: {
       targets: [
         {
           target: "pino-pretty",
-          level: config.LOG_LEVELS.DEBUG,
+          level: APP_CONSTS.LOG_LEVELS.DEBUG,
           options: {
             colorize: true,
             levelFirst: true,
