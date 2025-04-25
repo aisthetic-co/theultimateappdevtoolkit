@@ -37,7 +37,7 @@ const validate =
           message: e.message,
           path: e.path.join("."),
         }));
-      }else{
+      } else {
         logger.error("Error in validation middleware", err);
         throw next(err);
       }

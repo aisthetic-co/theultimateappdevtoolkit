@@ -7,7 +7,11 @@ import healthcheckValidation from "./healthcheck.validation";
 
 const router = express.Router();
 
-router.post("/hello", validate(healthcheckValidation.sayHelloSchema), asyncHandler(healthcheckController.sayHello));
+router.post(
+  "/hello",
+  validate(healthcheckValidation.sayHelloSchema),
+  asyncHandler(healthcheckController.sayHello),
+);
 router.get("/", asyncHandler(healthcheckController.healthCheck));
 
 export default router;

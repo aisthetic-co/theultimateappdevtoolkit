@@ -1,6 +1,6 @@
 import { IError } from "../types/error";
 
-class CustomError{
+class CustomError {
   errors;
   message: string;
   statusCode: number;
