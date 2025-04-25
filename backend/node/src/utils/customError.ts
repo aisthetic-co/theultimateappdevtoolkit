@@ -1,11 +1,12 @@
 import { IError } from "../types/error";
 
-class CustomError extends Error {
-  errors: unknown[];
+class CustomError{
+  errors;
+  message: string;
   statusCode: number;
 
   constructor(message: string, statusCode: number, errors?: IError[]) {
-    super(message);
+    this.message = message;
     this.statusCode = statusCode;
     this.errors = errors;
   }
