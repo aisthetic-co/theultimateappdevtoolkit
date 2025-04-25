@@ -14,7 +14,7 @@ const errorMiddleware: ErrorRequestHandler = (
   next: NextFunction,
 ) => {
   logger.error(
-    `Error occurred for request ID: ${req.id}. Message: ${JSON.stringify(
+    `Error occurred for request ID: ${JSON.stringify(req.id)}. Message: ${JSON.stringify(
       err.message,
     )}`,
   );

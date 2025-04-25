@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(pinoLogger());
-app.use(`${APP_ENVS.PREFIX}`, router);
+app.use(APP_ENVS.PREFIX, router);
 
 app.use(notFound);
 app.use(errorMiddleware);

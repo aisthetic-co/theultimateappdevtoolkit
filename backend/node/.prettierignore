@@ -1,5 +1,8 @@
-dist
+.github/
+.husky/
+.vscode/
+coverage/
+dist/
+logs/
 node_modules/
-.vscode
-logs
 .coverage

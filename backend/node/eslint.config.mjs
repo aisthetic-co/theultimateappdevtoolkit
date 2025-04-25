@@ -1,25 +1,33 @@
-import js from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
 import perfectionist from "eslint-plugin-perfectionist";
 import { defineConfig } from "eslint/config";
-import globals from "globals";
 import tseslint from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
   {
-    ignores: ["src/const/httpStatus.ts", "src/const/index.ts", "dist/**"],
+    ignores: ["**/*.js", "eslint.config.mjs", "prettier.config.mjs"],
   },
+  // TypeScript rules
   {
-    extends: ["js/recommended"],
-    files: ["**/*.{js,mjs,cjs,ts}"],
-    plugins: { js },
-  },
-  {
-    files: ["**/*.{js,mjs,cjs,ts}"],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
   },
   tseslint.configs.recommended,
-  perfectionist.configs["recommended-natural"],
+  // tseslint.configs.strictTypeChecked,
+  // tseslint.configs.stylisticTypeChecked,
+
+  // Perfectionist rules
+  {
+    ...perfectionist.configs["recommended-natural"],
+    ignores: ["src/const/httpStatus.ts", "src/const/index.ts"],
+  },
+
+  // Vitest rules
   {
     files: ["**/*.test.ts", "**/*.spec.ts"],
     plugins: {
@@ -30,4 +38,7 @@ export default defineConfig([
       "@typescript-eslint/unbound-method": "off",
     },
   },
+
+  //Other
+  eslintConfigPrettier,
 ]);
