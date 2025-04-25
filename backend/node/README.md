@@ -122,7 +122,7 @@ npm run lint:fix
 
 ### Vitest:
 
-We use Vitest as our primary unit testing framework.
+We use Vitest as our primary testing framework.
 
 - Run tests
 
