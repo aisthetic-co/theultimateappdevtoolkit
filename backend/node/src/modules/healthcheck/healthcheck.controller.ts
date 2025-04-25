@@ -6,7 +6,6 @@ import httpStatus from "../../const/httpStatus";
 
 const healthCheck = async (req: Request, res: Response) => {
   const healthCheckResponse = {
-    message: "OK",
     server: {
       hostname: os.hostname(),
       name: APP_ENVS.SERVER_NAME,
