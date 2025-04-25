@@ -11,7 +11,7 @@ const router = express.Router();
 
 const routes: Route[] = [
   {
-    path: "/",
+    path: "/health",
     route: healthcheckRoute,
   },
 ];

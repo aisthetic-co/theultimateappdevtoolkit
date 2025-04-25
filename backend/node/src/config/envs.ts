@@ -7,7 +7,6 @@ const APP_ENVS = {
   API_URL: env.get("API_URL").default("http://localhost:4000/api").asString(),
   ENV: env.get("NODE_ENV").default("development").asString(),
   PORT: env.get("PORT").default("4000").asString(),
-  PREFIX: env.get("PREFIX").default("/api").asString(),
   SERVER_NAME: env.get("SERVER_NAME").default("localServer").asString(),
 };
 

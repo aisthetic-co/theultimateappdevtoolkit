@@ -17,7 +17,7 @@
     "copy-views": "copyfiles -u 1 \"./src/**/*.ejs\" \"dist\"",
     "format": "prettier -c .",
     "format:fix": "prettier -w .",
-    "prepare": "husky && husky install"
+    "prepare": "husky"
   },
   "author": "Harshad Birajdar <hbirajdar1@gmail.com>",
   "license": "ISC",

@@ -6,7 +6,6 @@ import helmet from "helmet";
 import errorMiddleware from "./common/error.middleware";
 import pinoLogger from "./common/logger.middleware";
 import notFound from "./common/notFound.middleware";
-import APP_ENVS from "./config/envs";
 import router from "./routes";
 
 const app = express();
@@ -18,7 +17,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(pinoLogger());
-app.use(APP_ENVS.PREFIX, router);
+app.use("/api/v1", router);
 
 app.use(notFound);
 app.use(errorMiddleware);

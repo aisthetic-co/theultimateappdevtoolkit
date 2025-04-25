@@ -21,8 +21,10 @@ const healthCheck = async (req: Request, res: Response) => {
 };
 
 const sayHello = async (req: Request, res: Response) => {
+  const { name } = req.body;
+
   res.status(httpStatus.ok).json({
-    message: `Hello from ${APP_ENVS.SERVER_NAME} server`,
+    message: `Hello, ${name ?? "World"}!`,
   });
 };
 
