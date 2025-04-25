@@ -8,8 +8,7 @@
     "build": "npm run clean && tsc && npm run copy-views",
     "clean": "rimraf dist/",
     "start": "node ./dist/index.js",
-    "test": "vitest",
-    "test:run": "vitest --run",
+    "test": "vitest --run",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
@@ -17,7 +16,6 @@
     "copy-views": "copyfiles -u 1 \"./src/**/*.ejs\" \"dist\"",
     "format": "prettier -c ./src",
     "format:fix": "prettier -w ./src",
-    "all": "npm run lint:fix && npm run lint && npm run format:fix && npm run format",
     "prepare": "husky && husky install"
   },
   "author": "Harshad Birajdar <hbirajdar1@gmail.com>",
