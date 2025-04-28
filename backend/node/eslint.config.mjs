@@ -6,7 +6,7 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
   {
-    ignores: ["**/*.js", "eslint.config.mjs", "prettier.config.mjs"],
+    ignores: ["**/*.js", "eslint.config.mjs", "prettier.config.mjs", "commitlint.config.mjs"],
   },
   // TypeScript rules
   {
