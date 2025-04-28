@@ -1,14 +1,9 @@
 // logger.js
 import path from "path";
-import { dirname } from "path";
 import pino from "pino";
-import { fileURLToPath } from "url";
 
 import APP_CONFIG from "../config";
 import APP_CONSTS from "../const";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const redactPaths = [
   "name",
