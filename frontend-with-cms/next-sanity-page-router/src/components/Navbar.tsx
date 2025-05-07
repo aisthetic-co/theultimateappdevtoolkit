@@ -1,7 +1,7 @@
 import { NavigationQueryResult } from "@/sanity/types";
 
 const NavBar = (props: NavigationQueryResult) => {
-  console.log("test", props);
+  console.log("Navbar Data", props);
   return <div>NavBar</div>;
 };
 
