@@ -9,7 +9,7 @@ export default function DisableDraftMode() {
 
   return (
     show && (
-      <div className="fixed left-0 top-0 z-[51] w-full">
+      <div className="fixed left-0 top-0 z-[51] w-full text-white">
         <div className="py-2 text-center font-poppins-14-400-24">
           {"Previewing drafts. "}
           <a

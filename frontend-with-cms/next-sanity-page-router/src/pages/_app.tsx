@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 
@@ -11,8 +12,6 @@ export interface SharedProps {
 
 export default function App({ Component, pageProps }: AppProps<SharedProps>) {
   const { draftMode } = pageProps;
-
-  console.log("Test", draftMode);
 
   return (
     <>
