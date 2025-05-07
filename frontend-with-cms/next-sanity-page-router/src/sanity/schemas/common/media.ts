@@ -21,14 +21,14 @@ export default defineType({
       name: "image",
       title: "Image",
       type: "customImage",
-      hidden: ({ parent, value }) =>
+      hidden: ({ parent }) =>
         !parent?.mediaType || parent?.mediaType == "video"
     }),
     defineField({
       name: "video",
       title: "Video",
       type: "customVideo",
-      hidden: ({ parent, value }) =>
+      hidden: ({ parent }) =>
         !parent?.mediaType || parent?.mediaType == "image"
     })
   ],

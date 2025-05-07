@@ -10,14 +10,14 @@ export default defineType({
     defineField({
       name: "metaData",
       title: "Default SEO",
-      type: "pageMetaData"
-    })
+      type: "pageMetaData",
+    }),
   ],
   preview: {
     prepare() {
       return {
-        title: "Settings"
+        title: "Settings",
       };
-    }
-  }
+    },
+  },
 });

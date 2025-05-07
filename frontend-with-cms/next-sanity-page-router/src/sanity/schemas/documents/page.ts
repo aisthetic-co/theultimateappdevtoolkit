@@ -34,7 +34,7 @@ export default defineType({
       options: {
         source: "pageTitle"
       },
-      hidden: ({ parent, value }) => parent?.homePage == true
+      hidden: ({ parent }) => parent?.homePage == true
     }),
     defineField({
       name: "metaData",

@@ -9,29 +9,25 @@
  */
 
 import {
-    PortableText,
-    type PortableTextComponents,
-    type PortableTextBlock
-  } from "next-sanity";
-  
-  export default function CustomPortableText({
-    className,
-    value
-  }: {
-    className?: string;
-    value: PortableTextBlock[];
-  }) {
-    const components: PortableTextComponents = {
-      types: {
-      }
-    };
-  
-    return (
-      <div className={className}>
-        <PortableText
-          components={components}
-          value={value}
-        />
-      </div>
-    );
-  }
+  PortableText,
+  type PortableTextComponents,
+  type PortableTextBlock,
+} from "next-sanity";
+
+export default function CustomPortableText({
+  className,
+  value,
+}: {
+  className?: string;
+  value: PortableTextBlock[];
+}) {
+  const components: PortableTextComponents = {
+    types: {},
+  };
+
+  return (
+    <div className={className}>
+      <PortableText components={components} value={value} />
+    </div>
+  );
+}
