@@ -1,19 +1,17 @@
-import { SanityDocument } from "next-sanity";
 import PageContent from "@/components/PageContent";
 import { homePageQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { HomePageQueryResult } from "@/sanity/types";
 
 type PageProps = {
-  pageData: SanityDocument;
+  pageData: HomePageQueryResult;
   draftMode: boolean;
 };
 
 export default function Home(props: PageProps) {
-  return (
-    <>
-      <PageContent content={props.pageData} />
-    </>
-  );
+  const { pageData } = props;
+
+  return <>{pageData?.content && <PageContent content={pageData.content} />}</>;
 }
 
 export const getStaticProps = async ({ draftMode = false }) => {

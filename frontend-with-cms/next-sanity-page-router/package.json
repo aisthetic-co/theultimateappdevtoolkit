@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "prebuild": "npm run typegen",
     "start": "next start",
     "lint": "next lint",
-    "typegen": "sanity schema extract && sanity typegen generate"
+    "typegen": "sanity schema extract --path=src/sanity/schema.json && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^7.1.0",
