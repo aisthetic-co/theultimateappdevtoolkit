@@ -10,6 +10,7 @@ import page from "./documents/page";
 import footer from "./singletons/footer";
 import navigation from "./singletons/navigation";
 import settings from "./singletons/settings";
+import titleAndDescription from "./common/titleAndDescription";
 
 const schema = {
   types: [
@@ -29,7 +30,8 @@ const schema = {
     content,
     link,
     richText,
-    customCta
+    customCta,
+    titleAndDescription
   ]
 }
 

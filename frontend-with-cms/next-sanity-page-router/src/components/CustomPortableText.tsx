@@ -13,6 +13,7 @@ import {
   type PortableTextComponents,
   type PortableTextBlock,
 } from "next-sanity";
+import TitleAndDescription from "./TitleAndDescription";
 
 export default function CustomPortableText({
   className,
@@ -22,7 +23,9 @@ export default function CustomPortableText({
   value: PortableTextBlock[];
 }) {
   const components: PortableTextComponents = {
-    types: {},
+    types: {
+      titleAndDescription: ({ value }) => <TitleAndDescription {...value} />,
+    },
   };
 
   return (

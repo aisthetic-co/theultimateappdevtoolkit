@@ -46,6 +46,28 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TitleAndDescription = {
+  _type: "titleAndDescription";
+  title?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      _key: string;
+    } & Link>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  cta?: CustomCta;
+};
+
 export type CustomCta = {
   _type: "customCta";
   ctaLabel?: string;
@@ -104,7 +126,9 @@ export type Content = Array<{
   _key: string;
 } & CustomVideo | {
   _key: string;
-} & Media>;
+} & Media | {
+  _key: string;
+} & TitleAndDescription>;
 
 export type Media = {
   _type: "media";
@@ -323,7 +347,7 @@ export type PageMetaData = {
   metadataBase?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | CustomCta | RichText | Link | Content | Media | CustomVideo | CustomImage | Page | SanityFileAsset | Slug | Footer | Navigation | Settings | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | PageMetaData;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | TitleAndDescription | CustomCta | RichText | Link | Content | Media | CustomVideo | CustomImage | Page | SanityFileAsset | Slug | Footer | Navigation | Settings | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | PageMetaData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -476,6 +500,42 @@ export type HomePageQueryResult = {
         };
       };
     };
+  } | {
+    _key: string;
+    _type: "titleAndDescription";
+    title: string | null;
+    description: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs: Array<{
+        _key: string;
+        _type: "link";
+        internalLink: {
+          slug: string | null;
+        } | null;
+        externalLink: string | null;
+      }> | null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+    cta: {
+      _type: "customCta";
+      ctaLabel: string | null;
+      ctaLink: {
+        internalLink: {
+          slug: string | null;
+        } | null;
+        externalLink: string | null;
+      } | null;
+      ctaColour: "black" | "white" | null;
+    } | null;
   }> | null;
   metaData: PageMetaData | null;
 } | null;
