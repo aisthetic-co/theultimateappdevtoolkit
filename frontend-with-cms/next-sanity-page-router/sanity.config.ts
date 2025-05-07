@@ -28,10 +28,6 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
-    structureTool({ structure: pageStructure([settings, navigation, footer]) }),
-    // Vision is for querying with GROQ from inside the Studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({ defaultApiVersion: apiVersion }),
     presentationTool({
       resolve: {
         mainDocuments: defineDocuments([
@@ -65,6 +61,10 @@ export default defineConfig({
           disable: '/api/draft-mode/disable',
         },
       },
-    })
+    }),
+    structureTool({ structure: pageStructure([settings, navigation, footer]) }),
+    // Vision is for querying with GROQ from inside the Studio
+    // https://www.sanity.io/docs/the-vision-plugin
+    visionTool({ defaultApiVersion: apiVersion }),
   ],
 })
