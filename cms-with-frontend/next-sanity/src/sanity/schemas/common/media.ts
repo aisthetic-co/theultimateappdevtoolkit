@@ -15,7 +15,8 @@ export default defineType({
           { title: "Video", value: "video" }
         ],
         layout: "radio"
-      }
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "image",

@@ -8,12 +8,14 @@ export default defineType({
     defineField({
       title: "CTA label",
       name: "ctaLabel",
-      type: "string"
+      type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       title: "CTA link",
       name: "ctaLink",
-      type: "link"
+      type: "link",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       title: "CTA colour",

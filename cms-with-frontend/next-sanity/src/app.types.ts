@@ -4,16 +4,16 @@ import { ImageDimensions } from "sanity";
 export type WithoutNull<T> = T extends null ? never : T;
 
 export type Tlink = {
-    internalLink: {
-        slug: string;
-    };
-    externalLink: string;
+    internalLink?: {
+        slug: string | null;
+    } | null;
+    externalLink?: string | null;
 };
 
 export type CustomCtaProps = {
-    ctaLabel: string;
-    ctaLink: Tlink;
-    ctaColour: string;
+    ctaLabel?: string;
+    ctaLink: Tlink | null;
+    ctaColour?: string;
 };
 
 export type CustomImageProps = {
@@ -25,10 +25,17 @@ export type CustomImageProps = {
         imageUrl?: string;
         imageDimensions?: ImageDimensions;
     };
-    isLCP: boolean;
+    width?: number | string;
+    height?: number | string;
+    className?: string;
+    isLCP?: boolean;
     caption?: string;
 };
 
+export type SingleImage = {
+    imageUrl?: string;
+    imageDimensions?: ImageDimensions;
+}
 
 export type CustomVideoProps = {
     desktopVideo?: {
@@ -45,6 +52,14 @@ export type CustomVideoProps = {
             height: number;
         };
     };
-    showMuteIcon: boolean;
-    cropVideoForMobile: boolean;
+    showMuteIcon?: boolean;
+    width?: number | string;
+    height?: number | string;
+    className?: string;
 };
+
+export interface TCustomMedia {
+    mediaType: "image" | "video";
+    image?: CustomImageProps;
+    video?: CustomVideoProps
+}

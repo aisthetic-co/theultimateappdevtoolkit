@@ -1,30 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { CustomImageProps } from "@/app.types";
 
-type Props = CustomImageProps;
+const Loader = () => {
+  return (
+    <span className="bg-[#e7e7e7] absolute w-full h-full left-0 top-0"></span>
+  );
+};
 
-export default function CustomImage(props: Props) {
+export default function CustomImage(props: CustomImageProps) {
+  const {
+    width = "100%",
+    height = "auto",
+    className,
+    desktopImage,
+    mobileImage,
+    caption,
+    isLCP,
+  } = props;
+
+  const [imageLoading, setImageLoading] = useState(true);
+  const [mobileImageLoading, setMobileImageLoading] = useState(true);
+
+  const isIntrinsicSize = width === "auto" && height === "auto";
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
+  const handleMobileImageLoad = () => {
+    setMobileImageLoading(false);
+  };
+
+  if (!desktopImage?.imageUrl) {
+    return null;
+  }
+
   return (
     <>
-      {!!props.desktopImage?.imageUrl && (
+      <div
+        style={{
+          width: width === "auto" ? "fit-content" : width,
+          height: height === "auto" ? "fit-content" : height,
+        }}
+        className={`relative hidden md:block`}
+      >
         <Image
-          src={props.desktopImage.imageUrl}
-          width={props.desktopImage.imageDimensions?.width}
-          height={props.desktopImage.imageDimensions?.height}
-          priority={props.isLCP ?? false}
-          alt={props.caption ?? "unkown"}
+          style={{
+            width: !isIntrinsicSize ? width : undefined,
+            height: !isIntrinsicSize ? height : undefined,
+          }}
+          className={`${className ?? ""}`}
+          src={desktopImage?.imageUrl}
+          width={desktopImage?.imageDimensions?.width}
+          height={desktopImage?.imageDimensions?.height}
+          priority={isLCP ?? false}
+          alt={caption ?? "unkown"}
+          onLoad={handleImageLoad}
+          unoptimized
         />
-      )}
-      {!!props.mobileImage?.imageUrl && (
+        {imageLoading && <Loader />}
+      </div>
+
+      <div
+        style={{
+          width: width === "auto" ? "fit-content" : width,
+          height: height === "auto" ? "fit-content" : height,
+        }}
+        className={`relative md:hidden`}
+      >
         <Image
-          src={props.mobileImage.imageUrl}
-          width={props.mobileImage.imageDimensions?.width}
-          height={props.mobileImage.imageDimensions?.height}
-          priority={props.isLCP ?? false}
-          alt={props.caption ?? "unkown"}
+          style={{
+            width: !isIntrinsicSize ? width : undefined,
+            height: !isIntrinsicSize ? height : undefined,
+          }}
+          className={`${className ?? ""}`}
+          src={mobileImage?.imageUrl || desktopImage?.imageUrl}
+          width={
+            mobileImage?.imageDimensions?.width ||
+            desktopImage?.imageDimensions?.width
+          }
+          height={
+            mobileImage?.imageDimensions?.height ||
+            desktopImage?.imageDimensions?.height
+          }
+          priority={isLCP ?? false}
+          alt={caption ?? "unkown"}
+          onLoad={handleMobileImageLoad}
+          unoptimized
         />
-      )}
+        {mobileImageLoading && <Loader />}
+      </div>
     </>
   );
 }

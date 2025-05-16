@@ -9,8 +9,8 @@ export default function DisableDraftMode() {
 
   return (
     show && (
-      <div className="fixed left-0 top-0 z-[51] w-full text-white">
-        <div className="py-2 text-center font-poppins-14-400-24">
+      <div className="fixed left-0 top-0 z-[9999] w-full">
+        <div className="py-2 text-center font-montserrat">
           {"Previewing drafts. "}
           <a
             href={"/api/draft-mode/disable"}

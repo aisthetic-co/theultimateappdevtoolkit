@@ -14,10 +14,10 @@ export const urlForImage = (source: SanityImageSource) => {
 
 
 export const getReferenceLink = (
-  value: Tlink
-): { linkType: "external" | "internal"; url: string } => {
+  value: Tlink | null
+): { linkType: "external" | "internal"; url?: string | null } => {
   const linkType = value?.internalLink ? "internal" : "external";
-  let url = "#";
+  let url: string | undefined | null = "#";
 
   switch (linkType) {
     case "internal": {
@@ -32,3 +32,10 @@ export const getReferenceLink = (
 
   return { linkType, url };
 };
+
+export function resolveOpenGraphImage(imageUrl: string) {
+  if (!imageUrl) return;
+  const url = urlForImage(imageUrl)?.width(1200).height(627).fit("crop").url();
+  if (!url) return;
+  return url;
+}

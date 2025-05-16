@@ -70,8 +70,8 @@ export type TitleAndDescription = {
 
 export type CustomCta = {
   _type: "customCta";
-  ctaLabel?: string;
-  ctaLink?: Link;
+  ctaLabel: string;
+  ctaLink: Link;
   ctaColour?: "black" | "white";
 };
 
@@ -132,15 +132,15 @@ export type Content = Array<{
 
 export type Media = {
   _type: "media";
-  mediaType?: "image" | "video";
+  mediaType: "image" | "video";
   image?: CustomImage;
   video?: CustomVideo;
 };
 
 export type CustomVideo = {
   _type: "customVideo";
-  desktopVideo?: {
-    videoFile?: {
+  desktopVideo: {
+    videoFile: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -154,7 +154,7 @@ export type CustomVideo = {
     height?: number;
   };
   mobileVideo?: {
-    videoFile?: {
+    videoFile: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -168,12 +168,11 @@ export type CustomVideo = {
     height?: number;
   };
   showMuteIcon?: boolean;
-  cropVideoForMobile?: boolean;
 };
 
 export type CustomImage = {
   _type: "customImage";
-  desktopImage?: {
+  desktopImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -198,7 +197,6 @@ export type CustomImage = {
     _type: "image";
   };
   caption?: string;
-  isLCP?: boolean;
 };
 
 export type Page = {
@@ -234,41 +232,6 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type Footer = {
-  _id: string;
-  _type: "footer";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  Field1?: string;
-  Field2?: string;
-};
-
-export type Navigation = {
-  _id: string;
-  _type: "navigation";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  Field1?: string;
-  Field2?: string;
-};
-
-export type Settings = {
-  _id: string;
-  _type: "settings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  metaData?: PageMetaData;
 };
 
 export type SanityImageCrop = {
@@ -347,7 +310,43 @@ export type PageMetaData = {
   metadataBase?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | TitleAndDescription | CustomCta | RichText | Link | Content | Media | CustomVideo | CustomImage | Page | SanityFileAsset | Slug | Footer | Navigation | Settings | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | PageMetaData;
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Field1?: string;
+  Field2?: string;
+};
+
+export type Navigation = {
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Field1?: string;
+  Field2?: string;
+};
+
+export type Settings = {
+  _id: string;
+  _type: "settings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Field1?: string;
+  Field2?: string;
+};
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | TitleAndDescription | CustomCta | RichText | Link | Content | Media | CustomVideo | CustomImage | Page | SanityFileAsset | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | PageMetaData | Slug | Footer | Navigation | Settings;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -358,7 +357,8 @@ export type SettingsQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  metaData?: PageMetaData;
+  Field1?: string;
+  Field2?: string;
 } | null;
 // Variable: navigationQuery
 // Query: *[_type == "navigation"][0]
@@ -383,7 +383,7 @@ export type FooterQueryResult = {
   Field2?: string;
 } | null;
 // Variable: homePageQuery
-// Query: *[_type == "page" && isHomePage == true][0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "date": coalesce(date, _updatedAt),  "slug": slug.current,  isHomePage,  content[]{    ...,    _type == 'customImage' => {     ...,          "desktopImage":{      "imageUrl": desktopImage.asset->url,      "imageDimensions": desktopImage.asset->metadata.dimensions  },  "mobileImage":{      "imageUrl": mobileImage.asset->url,      "imageDimensions": mobileImage.asset->metadata.dimensions  },  isLCP,  caption    },    _type == 'customVideo' => {     ...,       "desktopVideo":{      "videoUrl": desktopVideo.videoFile.asset->url,      "videoDimensions": {          "width":desktopVideo.width,          "height":desktopVideo.height,      }  },  "mobileVideo":{     "videoUrl": mobileVideo.videoFile.asset->url,     "videoDimensions": {          "width":mobileVideo.width,          "height":mobileVideo.height,      }  }    },     _type == 'media' => {     ...,         mediaType,    "image":{      ...image,      "desktopImage":{        "imageUrl": image.desktopImage.asset->url,        "imageDimensions": image.desktopImage.asset->metadata.dimensions      },      "mobileImage":{        "imageUrl": image.mobileImage.asset->url,        "imageDimensions": image.mobileImage.asset->metadata.dimensions      },    },    "video":{      ...video,      "desktopVideo":{        "videoUrl": video.desktopVideo.videoFile.asset->url,        "videoDimensions": {          "width":video.desktopVideo.width,          "height":video.desktopVideo.height,        }      },      "mobileVideo":{        "videoUrl": video.mobileVideo.videoFile.asset->url,        "videoDimensions": {          "width":video.mobileVideo.width,          "height":video.mobileVideo.height,        }      }    }    },    _type == 'titleAndDescription' => {     ...,       title,  description[]{    ...,      markDefs[]{    ...,       internalLink->{    "slug":slug.current  },  externalLink  }  },  cta{    ...,      ctaLabel,  ctaLink{      internalLink->{    "slug":slug.current  },  externalLink  },  ctaColour  }    }  },  metaData  }
+// Query: *[_type == "page" && isHomePage == true][0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "date": coalesce(date, _updatedAt),  "slug": slug.current,  isHomePage,  content[]{    ...,    _type == 'customImage' => {     ...,          "desktopImage":{      "imageUrl": desktopImage.asset->url,      "imageDimensions": desktopImage.asset->metadata.dimensions  },  "mobileImage":{      "imageUrl": mobileImage.asset->url,      "imageDimensions": mobileImage.asset->metadata.dimensions  },  caption    },    _type == 'customVideo' => {     ...,       "desktopVideo":{      "videoUrl": desktopVideo.videoFile.asset->url,      "videoDimensions": {          "width":desktopVideo.width,          "height":desktopVideo.height,      }  },  "mobileVideo":{     "videoUrl": mobileVideo.videoFile.asset->url,     "videoDimensions": {          "width":mobileVideo.width,          "height":mobileVideo.height,      }  }    },     _type == 'media' => {     ...,         mediaType,    "image":{      ...image,      "desktopImage":{        "imageUrl": image.desktopImage.asset->url,        "imageDimensions": image.desktopImage.asset->metadata.dimensions      },      "mobileImage":{        "imageUrl": image.mobileImage.asset->url,        "imageDimensions": image.mobileImage.asset->metadata.dimensions      },    },    "video":{      ...video,      "desktopVideo":{        "videoUrl": video.desktopVideo.videoFile.asset->url,        "videoDimensions": {          "width":video.desktopVideo.width,          "height":video.desktopVideo.height,        }      },      "mobileVideo":{        "videoUrl": video.mobileVideo.videoFile.asset->url,        "videoDimensions": {          "width":video.mobileVideo.width,          "height":video.mobileVideo.height,        }      }    }    },    _type == 'titleAndDescription' => {     ...,       title,  description[]{    ...,      markDefs[]{    ...,       internalLink->{    "slug":slug.current  },  externalLink  }  },  cta{    ...,      ctaLabel,  ctaLink{      internalLink->{    "slug":slug.current  },  externalLink  },  ctaColour  }    },  },  metaData{     title,     description,     metadataBase,     ogImage{      "imageUrl": asset->url,      "imageDimensions": asset->metadata.dimensions    },  }  }
 export type HomePageQueryResult = {
   _id: string;
   status: "draft" | "published";
@@ -420,7 +420,6 @@ export type HomePageQueryResult = {
       imageDimensions: SanityImageDimensions | null;
     };
     caption: string | null;
-    isLCP: boolean | null;
   } | {
     _key: string;
     _type: "customVideo";
@@ -439,11 +438,10 @@ export type HomePageQueryResult = {
       };
     };
     showMuteIcon?: boolean;
-    cropVideoForMobile?: boolean;
   } | {
     _key: string;
     _type: "media";
-    mediaType: "image" | "video" | null;
+    mediaType: "image" | "video";
     image: {
       _type: "customImage";
       desktopImage: {
@@ -455,7 +453,6 @@ export type HomePageQueryResult = {
         imageDimensions: SanityImageDimensions | null;
       };
       caption?: string;
-      isLCP?: boolean;
     } | {
       desktopImage: {
         imageUrl: string | null;
@@ -483,7 +480,6 @@ export type HomePageQueryResult = {
         };
       };
       showMuteIcon?: boolean;
-      cropVideoForMobile?: boolean;
     } | {
       desktopVideo: {
         videoUrl: string | null;
@@ -527,18 +523,31 @@ export type HomePageQueryResult = {
     }> | null;
     cta: {
       _type: "customCta";
-      ctaLabel: string | null;
+      ctaLabel: string;
       ctaLink: {
         internalLink: {
           slug: string | null;
         } | null;
         externalLink: string | null;
-      } | null;
+      };
       ctaColour: "black" | "white" | null;
     } | null;
   }> | null;
-  metaData: PageMetaData | null;
+  metaData: {
+    title: string | null;
+    description: string | null;
+    metadataBase: string | null;
+    ogImage: {
+      imageUrl: string | null;
+      imageDimensions: SanityImageDimensions | null;
+    } | null;
+  } | null;
 } | null;
+// Variable: pageSlugsQuery
+// Query: *[_type == "page" && (isHomePage == false || isHomePage == null) ]{    "slug": slug.current    }
+export type PageSlugsQueryResult = Array<{
+  slug: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -547,6 +556,7 @@ declare module "@sanity/client" {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"navigation\"][0]": NavigationQueryResult;
     "*[_type == \"footer\"][0]": FooterQueryResult;
-    "\n  *[_type == \"page\" && isHomePage == true][0] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"date\": coalesce(date, _updatedAt),\n  \"slug\": slug.current,\n  isHomePage,\n  content[]{\n    ...,\n    _type == 'customImage' => {\n     ...,\n     \n     \"desktopImage\":{\n      \"imageUrl\": desktopImage.asset->url,\n      \"imageDimensions\": desktopImage.asset->metadata.dimensions\n  },\n  \"mobileImage\":{\n      \"imageUrl\": mobileImage.asset->url,\n      \"imageDimensions\": mobileImage.asset->metadata.dimensions\n  },\n  isLCP,\n  caption\n\n    },\n    _type == 'customVideo' => {\n     ...,\n     \n  \"desktopVideo\":{\n      \"videoUrl\": desktopVideo.videoFile.asset->url,\n      \"videoDimensions\": {\n          \"width\":desktopVideo.width,\n          \"height\":desktopVideo.height,\n      }\n  },\n  \"mobileVideo\":{\n     \"videoUrl\": mobileVideo.videoFile.asset->url,\n     \"videoDimensions\": {\n          \"width\":mobileVideo.width,\n          \"height\":mobileVideo.height,\n      }\n  }\n\n    },\n     _type == 'media' => {\n     ...,\n     \n    mediaType,\n    \"image\":{\n      ...image,\n      \"desktopImage\":{\n        \"imageUrl\": image.desktopImage.asset->url,\n        \"imageDimensions\": image.desktopImage.asset->metadata.dimensions\n      },\n      \"mobileImage\":{\n        \"imageUrl\": image.mobileImage.asset->url,\n        \"imageDimensions\": image.mobileImage.asset->metadata.dimensions\n      },\n    },\n    \"video\":{\n      ...video,\n      \"desktopVideo\":{\n        \"videoUrl\": video.desktopVideo.videoFile.asset->url,\n        \"videoDimensions\": {\n          \"width\":video.desktopVideo.width,\n          \"height\":video.desktopVideo.height,\n        }\n      },\n      \"mobileVideo\":{\n        \"videoUrl\": video.mobileVideo.videoFile.asset->url,\n        \"videoDimensions\": {\n          \"width\":video.mobileVideo.width,\n          \"height\":video.mobileVideo.height,\n        }\n      }\n    }\n\n    },\n    _type == 'titleAndDescription' => {\n     ...,\n     \n  title,\n  description[]{\n    ...,\n    \n  markDefs[]{\n    ...,\n     \n  internalLink->{\n    \"slug\":slug.current\n  },\n  externalLink\n\n  }\n\n  },\n  cta{\n    ...,\n    \n  ctaLabel,\n  ctaLink{\n    \n  internalLink->{\n    \"slug\":slug.current\n  },\n  externalLink\n\n  },\n  ctaColour\n\n  }\n\n    }\n  },\n  metaData\n\n  }\n": HomePageQueryResult;
+    "\n  *[_type == \"page\" && isHomePage == true][0] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"date\": coalesce(date, _updatedAt),\n  \"slug\": slug.current,\n  isHomePage,\n  content[]{\n    ...,\n    _type == 'customImage' => {\n     ...,\n     \n     \"desktopImage\":{\n      \"imageUrl\": desktopImage.asset->url,\n      \"imageDimensions\": desktopImage.asset->metadata.dimensions\n  },\n  \"mobileImage\":{\n      \"imageUrl\": mobileImage.asset->url,\n      \"imageDimensions\": mobileImage.asset->metadata.dimensions\n  },\n  caption\n\n    },\n    _type == 'customVideo' => {\n     ...,\n     \n  \"desktopVideo\":{\n      \"videoUrl\": desktopVideo.videoFile.asset->url,\n      \"videoDimensions\": {\n          \"width\":desktopVideo.width,\n          \"height\":desktopVideo.height,\n      }\n  },\n  \"mobileVideo\":{\n     \"videoUrl\": mobileVideo.videoFile.asset->url,\n     \"videoDimensions\": {\n          \"width\":mobileVideo.width,\n          \"height\":mobileVideo.height,\n      }\n  }\n\n    },\n     _type == 'media' => {\n     ...,\n     \n    mediaType,\n    \"image\":{\n      ...image,\n      \"desktopImage\":{\n        \"imageUrl\": image.desktopImage.asset->url,\n        \"imageDimensions\": image.desktopImage.asset->metadata.dimensions\n      },\n      \"mobileImage\":{\n        \"imageUrl\": image.mobileImage.asset->url,\n        \"imageDimensions\": image.mobileImage.asset->metadata.dimensions\n      },\n    },\n    \"video\":{\n      ...video,\n      \"desktopVideo\":{\n        \"videoUrl\": video.desktopVideo.videoFile.asset->url,\n        \"videoDimensions\": {\n          \"width\":video.desktopVideo.width,\n          \"height\":video.desktopVideo.height,\n        }\n      },\n      \"mobileVideo\":{\n        \"videoUrl\": video.mobileVideo.videoFile.asset->url,\n        \"videoDimensions\": {\n          \"width\":video.mobileVideo.width,\n          \"height\":video.mobileVideo.height,\n        }\n      }\n    }\n\n    },\n    _type == 'titleAndDescription' => {\n     ...,\n     \n  title,\n  description[]{\n    ...,\n    \n  markDefs[]{\n    ...,\n     \n  internalLink->{\n    \"slug\":slug.current\n  },\n  externalLink\n\n  }\n\n  },\n  cta{\n    ...,\n    \n  ctaLabel,\n  ctaLink{\n    \n  internalLink->{\n    \"slug\":slug.current\n  },\n  externalLink\n\n  },\n  ctaColour\n\n  }\n\n    },\n  },\n  metaData{\n     title,\n     description,\n     metadataBase,\n     ogImage{\n      \"imageUrl\": asset->url,\n      \"imageDimensions\": asset->metadata.dimensions\n    },\n  }\n\n  }\n": HomePageQueryResult;
+    "\n  *[_type == \"page\" && (isHomePage == false || isHomePage == null) ]{\n    \"slug\": slug.current  \n  }\n": PageSlugsQueryResult;
   }
 }

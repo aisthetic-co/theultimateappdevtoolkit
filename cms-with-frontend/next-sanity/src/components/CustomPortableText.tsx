@@ -16,6 +16,7 @@ import {
 import TitleAndDescription from "./TitleAndDescription";
 import CustomImage from "./CustomImage";
 import CustomVideo from "./CustomVideo";
+import Media from "./Media";
 
 export default function CustomPortableText({
   className,
@@ -31,6 +32,7 @@ export default function CustomPortableText({
         <CustomImage {...value} isLCP={index === 0} />
       ),
       customVideo: ({ value }) => <CustomVideo {...value} />,
+      media: ({ value, index }) => <Media {...value} isLCP={index === 0} />,
     },
   };
 

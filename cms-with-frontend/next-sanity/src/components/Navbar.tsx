@@ -1,8 +1,13 @@
+import { WithoutNull } from "@/app.types";
 import { NavigationQueryResult } from "@/sanity/types";
 
-const NavBar = (props: NavigationQueryResult) => {
+type NavBarProps = WithoutNull<NavigationQueryResult>;
+
+const NavBar = (props: NavBarProps) => {
   console.log("Navbar Data", props);
-  return <div>NavBar</div>;
+  return (
+    <header className="text-center font-montserrat text-6xl">NavBar</header>
+  );
 };
 
 export default NavBar;

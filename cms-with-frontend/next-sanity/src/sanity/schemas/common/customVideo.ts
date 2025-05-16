@@ -14,19 +14,21 @@ export default defineType({
         defineField({
           name: "videoFile",
           title: "Video File",
-          type: "file"
+          type: "file",
+          validation: (rule) => rule.required(),
         }),
         defineField({
           name: "width",
           title: "Width",
-          type: "number"
+          type: "number",
         }),
         defineField({
           name: "height",
           title: "Height",
-          type: "number"
+          type: "number",
         })
-      ]
+      ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "mobileVideo",
@@ -38,7 +40,8 @@ export default defineType({
           title: "Video File",
           type: "file",
           description:
-            "If you don't upload a mobile video, the frontend display the cropped desktop video."
+            "If you don't upload a mobile video, the frontend display the cropped desktop video.",
+          validation: (rule) => rule.required(),
         }),
         defineField({
           name: "width",
@@ -56,11 +59,6 @@ export default defineType({
       name: "showMuteIcon",
       type: "boolean",
       title: "Show mute icon"
-    }),
-    defineField({
-      name: "cropVideoForMobile",
-      type: "boolean",
-      title: "Crop video for mobile"
     })
   ],
   preview: {

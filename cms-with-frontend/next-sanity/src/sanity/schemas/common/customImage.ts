@@ -14,7 +14,8 @@ export default defineType({
       options: {
         hotspot: true,
         collapsible: false
-      }
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "mobileImage",
@@ -31,13 +32,6 @@ export default defineType({
       name: "caption",
       type: "string",
       title: "Caption / Alternate text"
-    }),
-    defineField({
-      name: "isLCP",
-      type: "boolean",
-      title: "isLCP?",
-      description:
-        "Does this image covers largest content on page, which appears first after page loads?"
     })
   ],
   preview: {

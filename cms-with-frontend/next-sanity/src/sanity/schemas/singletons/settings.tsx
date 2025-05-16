@@ -8,9 +8,14 @@ export default defineType({
   icon: CogIcon,
   fields: [
     defineField({
-      name: "metaData",
-      title: "Default SEO",
-      type: "pageMetaData",
+      name: "Field1",
+      title: "Field1",
+      type: "text",
+    }),
+    defineField({
+      name: "Field2",
+      title: "Field2",
+      type: "text",
     }),
   ],
   preview: {

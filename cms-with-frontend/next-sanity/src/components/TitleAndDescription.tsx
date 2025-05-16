@@ -11,16 +11,18 @@ type Props = {
 
 const TitleAndDescription = (props: Props) => {
   return (
-    <section className="text-center space-y-2 mx-auto">
-      {props.title && <h2 className="text-lg">{props.title}</h2>}
-      {props.description && <CustomRichText value={props.description} />}
+    <section className="py-10 space-y-8">
+      {props.title && (
+        <h2 className="font-montserrat text-4xl text-center">{props.title}</h2>
+      )}
+      {props.description && (
+        <div className="font-montserrat text-center text-lg">
+          <CustomRichText value={props.description} />
+        </div>
+      )}
       {props.cta && (
-        <div className="mx-auto w-fit">
-          <CustomCta
-            ctaLabel={props.cta.ctaLabel}
-            ctaLink={props.cta.ctaLink}
-            ctaColour={props.cta.ctaColour}
-          />
+        <div>
+          <CustomCta {...props.cta} />
         </div>
       )}
     </section>

@@ -35,7 +35,6 @@ const customImageFields = `
       "imageUrl": mobileImage.asset->url,
       "imageDimensions": mobileImage.asset->metadata.dimensions
   },
-  isLCP,
   caption
 `;
 
@@ -124,9 +123,17 @@ const pageFields = `
     _type == 'titleAndDescription' => {
      ...,
      ${titleAndDescriptionFields}
-    }
+    },
   },
-  metaData
+  metaData{
+     title,
+     description,
+     metadataBase,
+     ogImage{
+      "imageUrl": asset->url,
+      "imageDimensions": asset->metadata.dimensions
+    },
+  }
 `;
 
 export const homePageQuery = defineQuery(`
@@ -134,6 +141,12 @@ export const homePageQuery = defineQuery(`
     ${pageFields}
   }
 `);
+
+export const pageSlugsQuery = defineQuery(`
+  *[_type == "page" && (isHomePage == false || isHomePage == null) ]{
+    "slug": slug.current  
+  }
+`)
 
 export const pageQuery = (slug: string) =>
   defineQuery(`
