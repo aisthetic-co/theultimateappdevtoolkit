@@ -1,14 +1,22 @@
 # Next.js + Sanity CMS Starter
 
-This is a [Next.js](https://nextjs.org) project integrated with [Sanity V3](https://www.sanity.io/). It provides a robust foundation for building modern, scalable, and content-driven web applications.
-
 [![My Skills](https://skillicons.dev/icons?i=nextjs)](https://skillicons.dev)
 <img src="src/app/(sanity)/icon.svg" width="45" height="45">
 [![My Skills](https://skillicons.dev/icons?i=typescript,tailwind)](https://skillicons.dev)
 
-## Getting Started
+This starter uses Next.js 15 + Tailwind CSS for the frontend and [Sanity V3](https://www.sanity.io/) to handle its content. It comes with a embedded Sanity Studio that offers features like real-time collaboration and visual editing with live updates using [Presentation](https://www.sanity.io/docs/visual-editing/configuring-the-presentation-tool).
 
-### Setup Guide
+## Features
+
+- **Next.js Frontend:** Fully integrated frontend built with Next.js, featuring a collection of reusable components such as Media, CTA, etc.
+
+- **Embedded Sanity Studio:** Sanity Studio is seamlessly embedded and accessible at the /studio route, enabling in-context content editing without the need for a separate deployment.
+
+- **Studio Features:** Studio is pre-configured with essential plugins for a rich editing experience, including Presentation Tool, Structure Plugin, Vision Plugin and Visual Editing with Vercel.
+
+- **TypeScript Support with Sanity TypeGen:** Automatically generate TypeScript types from your schema using Sanity TypeGen, ensuring type safety and improved DX.
+
+## Setup Guide
 
 1. Clone the repository:
 
@@ -262,7 +270,7 @@ const components: PortableTextComponents = {
 };
 ```
 
-## 2. Add a New Font
+### 2. Add a New Font
 
 **Step 1.** Export Font from `fonts/loadFonts.ts`
 
@@ -302,7 +310,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 export default Layout;
 ```
 
-## 3. Tailwind CSS Guidelines
+---
+
+### 3. Tailwind CSS Guidelines
 
 You can add tailwind utilities and theme variables in `styles/global.css`
 
@@ -335,33 +345,37 @@ You can add tailwind utilities and theme variables in `styles/global.css`
 
 Read the Docs here - https://tailwindcss.com/docs/theme
 
-## 4. Namming Convention Guidelines
+---
 
-### File and Folder Naming
+### 4. Namming Convention Guidelines
+
+#### File and Folder Naming
 
 - **Folders**: Use `kebab-case` for folder names (e.g., `custom-components`, `sanity-schemas`).
 - **Files**:
   - Use `PascalCase` for React components (e.g., `CustomButton.tsx`, `PageHeader.tsx`).
   - Use `camelCase` for utility files (e.g., `fetchData.ts`, `formatDate.ts`).
 
-### Sanity Schema Naming
+#### Sanity Schema Naming
 
 - Use **camelCase** for schema names (e.g., `blogPost`, `siteSettings`).
 - Use **normalCase** for schema title (e.g., `Blog Post`, `Site Settings`).
 
-### TypeScript Naming
+#### TypeScript Naming
 
 - Use **PascalCase** for type and interface names (e.g., `UserProfile`, `PageProps`).
 - Use `I` as a prefix for interfaces only if it improves clarity (e.g., `IUser`).
 
-### Variables and Functions
+#### Variables and Functions
 
 - Use **camelCase** for variables and functions (e.g., `fetchData`, `userProfile`).
 - Use **UPPER_SNAKE_CASE** for constants (e.g., `API_BASE_URL`, `MAX_RETRIES`).
 
-## 5. Typescript
+---
 
-### Generated types
+### 5. Typescript
+
+#### Generated types
 
 Generate types out of your sanity queries, schemas using Sanity Typegen utitlity. They are typically stored in `src/sanity/types.ts`.
 
@@ -371,7 +385,7 @@ npm run typegen
 
 Read Docs here - https://www.sanity.io/docs/apis-and-sdks/sanity-typegen
 
-### Custom Types
+#### Custom Types
 
 If you need additional types not covered by Sanity Typegen, define them manually in `src/app.types.ts`.
 
