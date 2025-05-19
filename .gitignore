@@ -43,3 +43,13 @@
 /frontend/nextjs/next-env.d.ts
 
 #nextjs end
+
+#backend start
+dist
+.env
+node_modules
+.DS_Store
+logs
+coverage
+
+#backend end
