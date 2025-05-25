@@ -454,11 +454,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dynamic_zone: Schema.Attribute.DynamicZone<
-      [
-        'dynamic-zone.title-and-description',
-        'shared.media',
-        'shared.custom-cta',
-      ]
+      ['dynamic-zone.title-and-description', 'shared.media']
     >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;

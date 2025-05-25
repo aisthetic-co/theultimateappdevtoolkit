@@ -38,8 +38,7 @@
       "type": "dynamiczone",
       "components": [
         "dynamic-zone.title-and-description",
-        "shared.media",
-        "shared.custom-cta"
+        "shared.media"
       ]
     },
     "slug": {

@@ -2,12 +2,10 @@
 import React from "react";
 import TitleAndDescription from "./TitleAndDescription";
 import Media from "./Media";
-import CustomCta from "./CustomCta";
 
 const componentMapping = {
   "dynamic-zone.title-and-description": TitleAndDescription,
   "shared.media": Media,
-  "shared.custom-cta": CustomCta,
 };
 
 interface DynamicZoneComponent {
