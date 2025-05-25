@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_media",
+  "info": {
+    "displayName": "Media",
+    "icon": "dashboard",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mediaType": {
+      "type": "enumeration",
+      "enum": ["image", "video"],
+      "required": true
+    },
+    "image": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.custom-image"
+    },
+    "video": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.custom-video"
+    }
+  }
+}
