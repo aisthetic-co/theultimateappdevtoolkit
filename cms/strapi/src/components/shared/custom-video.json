@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_custom_videos",
+  "info": {
+    "displayName": "CustomVideo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "desktopVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["videos"]
+    },
+    "desktopWidth": {
+      "type": "integer"
+    },
+    "desktopHeight": {
+      "type": "integer"
+    },
+    "mobileVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["videos"]
+    },
+    "mobileWidth": {
+      "type": "integer"
+    },
+    "mobileHeight": {
+      "type": "integer"
+    },
+    "showMuteIcon": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

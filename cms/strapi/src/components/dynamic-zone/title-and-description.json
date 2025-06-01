@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_dynamic_zone_title_and_descriptions",
+  "info": {
+    "displayName": "TitleAndDescription",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "blocks"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.custom-cta"
+    }
+  }
+}
