@@ -21,7 +21,25 @@ const templateConfig = [
         key: "nextjs",
         subDir: "frontend/nextjs",
         readmeFile: "https://github.com/aisthetic-co/theultimateappdevtoolkit/blob/main/frontend/nextjs/README.md"
-    }
+    },
+    {
+        name: "NextJs + Strapi",
+        key: "next-strapi",
+        subDir: "frontend/next-strapi",
+        readmeFile: "https://github.com/aisthetic-co/theultimateappdevtoolkit/blob/main/frontend/next-strapi/README.md"
+    },
+    {
+        name: "NextJs + Sanity",
+        key: "next-sanity",
+        subDir: "frontend/next-sanity",
+        readmeFile: "https://github.com/aisthetic-co/theultimateappdevtoolkit/blob/main/frontend/next-sanity/README.md"
+    },
+    {
+        name: "Cms Strapi",
+        key: "cms-strapi",
+        subDir: "cms/strapi",
+        readmeFile: "https://github.com/aisthetic-co/theultimateappdevtoolkit/blob/main/cms/strapi/README.md"
+    },
     // Add more templates here...
 ];
 
