@@ -77,7 +77,7 @@ To publish the **Dev Toolkit CLI** to npm, follow these steps:
 3. **Publish the package**:
 
    ```bash
-   npm publish
+    npm publish --access public
    ```
 
 4. **Test the package**:
