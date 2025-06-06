@@ -1,0 +1,21 @@
+{
+  "name": "aidevtoolkit",
+  "version": "1.0.5",
+  "main": "index.js",
+  "type": "module",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Subham Sahu @Aisthetic",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "execa": "^9.5.3",
+    "inquirer": "^12.6.2"
+  },
+  "repository": "https://github.com/aisthetic-co/theultimateappdevtoolkit",
+  "homepage": "https://github.com/aisthetic-co/theultimateappdevtoolkit#readme"
+}

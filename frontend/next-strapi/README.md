@@ -1,4 +1,4 @@
-# Next.js + Sanity CMS Starter
+# Next.js + Strapi CMS Starter
 
 [![My Skills](https://skillicons.dev/icons?i=nextjs)](https://skillicons.dev)
 <img src="public/strapi.png" width="45" height="45">
