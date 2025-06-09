@@ -32,7 +32,7 @@ export default defineType({
       description:
         "Create a clean and SEO-friendly URL by clicking 'Generate' to automatically generate a slug based on your title.",
       options: {
-        source: "pageTitle"
+        source: "title"
       },
       hidden: ({ parent }) => parent?.homePage == true
     }),
